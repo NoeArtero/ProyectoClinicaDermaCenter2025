@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lbl_prueba = new Label();
             SuspendLayout();
+            // 
+            // lbl_prueba
+            // 
+            lbl_prueba.AutoSize = true;
+            lbl_prueba.Location = new Point(304, 61);
+            lbl_prueba.Name = "lbl_prueba";
+            lbl_prueba.Size = new Size(114, 15);
+            lbl_prueba.TabIndex = 0;
+            lbl_prueba.Text = "Prueba de push/pull";
             // 
             // DermaCenterInicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lbl_prueba);
             Name = "DermaCenterInicio";
             Text = "DermaCenter: Inicio";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lbl_prueba;
     }
 }
