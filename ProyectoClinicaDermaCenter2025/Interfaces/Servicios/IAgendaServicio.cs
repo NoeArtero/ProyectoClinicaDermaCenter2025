@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProyectoClinicaDermaCenter2025.Interfaces.Servicios
+{
+    public interface IAgendaServicio
+    {
+        bool validarDisponibilidad(int medicoId, DateTime inicio, TimeSpan duracion, int? consultorioId = null,
+            int? citaIdIgnorar = null);
+    }
+}
