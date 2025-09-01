@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Facturacion
 {
-    internal class Pago
+    public class Pago
     {
     }
 }

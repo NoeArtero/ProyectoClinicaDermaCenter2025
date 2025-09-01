@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Aseguradoras_Polizas
 {
-    internal class Aseguradora
+    public class Aseguradora
     {
     }
 }

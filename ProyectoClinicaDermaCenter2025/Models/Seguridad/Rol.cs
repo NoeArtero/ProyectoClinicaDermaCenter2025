@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Seguridad
 {
-    internal class Rol
+    public class Rol
     {
     }
 }
