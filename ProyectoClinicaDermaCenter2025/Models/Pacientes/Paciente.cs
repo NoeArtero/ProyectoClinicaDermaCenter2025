@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Pacientes
 {
-    internal class Paciente
+    public class Paciente
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.RecursosHumanos
 {
-    internal class Empleado
+    public class Empleado
     {
     }
 }

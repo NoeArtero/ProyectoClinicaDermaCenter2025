@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Agenda_Atencion
 {
-    internal class Servicio
+    public class Servicio
     {
     }
 }

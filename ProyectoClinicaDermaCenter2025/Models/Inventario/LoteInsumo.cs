@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Models.Inventario
 {
-    internal class LoteInsumo
+    public class LoteInsumo
     {
     }
 }

@@ -1,3 +1,6 @@
+
+using ProyectoClinicaDermaCenter2025.Recursos;
+
 using ProyectoClinicaDermaCenter2025.Views.Aseguradoras_Polizas;
 using ProyectoClinicaDermaCenter2025.Views.Atencion_Servicios;
 using ProyectoClinicaDermaCenter2025.Views.Citas;
@@ -9,8 +12,10 @@ using ProyectoClinicaDermaCenter2025.Views.Pagos;
 using ProyectoClinicaDermaCenter2025.Views.Proveedores;
 using ProyectoClinicaDermaCenter2025.Views.Reportes;
 using ProyectoClinicaDermaCenter2025.Views.Vencimientos;
-using System.Runtime.CompilerServices;
-using System.Xml.Serialization;
+using System;                 
+using System.Windows.Forms;  
+
+
 
 namespace ProyectoClinicaDermaCenter2025
 {
@@ -180,6 +185,8 @@ namespace ProyectoClinicaDermaCenter2025
         {
             Application.Exit();
         }
+
+       
     }
 
 }
