@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DermaCenterInicio));
             panelLateralTODO = new Panel();
             button1 = new Button();
             panelAdministraccion = new Panel();
@@ -366,7 +367,7 @@
             pictureBox1.Image = Properties.Resources.Imagen_de_WhatsApp_2025_08_31_a_las_18_50_06_feeb8cd3;
             pictureBox1.Location = new Point(348, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1092, 602);
+            pictureBox1.Size = new Size(1022, 602);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -377,9 +378,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             BackColor = Color.White;
-            ClientSize = new Size(1440, 602);
+            ClientSize = new Size(1370, 602);
             Controls.Add(pictureBox1);
             Controls.Add(panelLateralTODO);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DermaCenterInicio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DermaCenter: Inicio";

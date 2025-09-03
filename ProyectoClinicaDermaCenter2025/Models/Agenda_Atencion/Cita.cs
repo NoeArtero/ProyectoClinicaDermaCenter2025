@@ -8,5 +8,6 @@ namespace ProyectoClinicaDermaCenter2025.Models.Agenda_Atencion
 {
     public class Cita
     {
+
     }
 }
