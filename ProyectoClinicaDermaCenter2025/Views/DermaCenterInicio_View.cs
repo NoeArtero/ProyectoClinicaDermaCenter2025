@@ -64,10 +64,8 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnPacientes_Click(object sender, EventArgs e)
         {
-            Pacientes_View formPacientes = new Pacientes_View();
+           Pacientes_View formPacientes = new Pacientes_View();
             formPacientes.Show();
-            this.Hide();
-
             hideSubMenu();
         }
 

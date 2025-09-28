@@ -121,4 +121,7 @@
   <data name="Imagen de WhatsApp 2025-08-31 a las 18.50.06_feeb8cd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Imagen de WhatsApp 2025-08-31 a las 18.50.06_feeb8cd3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
