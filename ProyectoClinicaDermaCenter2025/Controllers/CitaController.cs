@@ -8,7 +8,7 @@ namespace ProyectoClinicaDermaCenter2025.Controllers
 {
     /*este es súper importante reyes porque es el que
      asegura que no haya duplicidad*/
-    internal class CitaController
+    public class CitaController
     {
         
     }

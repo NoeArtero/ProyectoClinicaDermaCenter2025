@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Controllers
 {
-    internal class AseguradoraController
+    public class AseguradoraController
     {
     }
 }
