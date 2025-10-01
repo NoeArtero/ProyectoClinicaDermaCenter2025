@@ -1,3 +1,5 @@
+using ProyectoClinicaDermaCenter2025.ConexionDB;
+
 namespace ProyectoClinicaDermaCenter2025
 {
     internal static class Program
@@ -11,6 +13,20 @@ namespace ProyectoClinicaDermaCenter2025
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            try
+            {
+                Conexion.Initialize();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(
+                "No fue posible preparar la base de datos.\n\n" + ex.Message,
+                "DermaCenter - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Application.Run(new DermaCenterInicio());
         }
     }
