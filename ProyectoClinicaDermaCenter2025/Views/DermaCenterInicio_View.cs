@@ -13,7 +13,8 @@ using ProyectoClinicaDermaCenter2025.Views.Proveedores;
 using ProyectoClinicaDermaCenter2025.Views.Reportes;
 using ProyectoClinicaDermaCenter2025.Views.Vencimientos;
 using System;                 
-using System.Windows.Forms;  
+using System.Windows.Forms;
+using static ProyectoClinicaDermaCenter2025.Views.Login_View;
 
 
 
@@ -25,6 +26,24 @@ namespace ProyectoClinicaDermaCenter2025
         {
             InitializeComponent();
             CustomizeDesign();
+        }
+
+        private void AplicarPermisosPorRol()
+        {
+            switch (Sesion.IdRol)
+            {
+                case 1: 
+                    break;
+                case 2: 
+                    btnFinanzas.Visible = panelFinanzas.Visible = false;
+                    btnAdministraccion.Visible = panelAdministraccion.Visible = false;
+                    break;
+                case 3: 
+                    btnInventarioFarmacia.Visible = panelInventario.Visible = false;
+                    btnAdministraccion.Visible = panelAdministraccion.Visible = false;
+                    break;
+                    
+            }
         }
 
         private void CustomizeDesign()
@@ -59,6 +78,7 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void DermaCenterInicio_Load(object sender, EventArgs e)
         {
+            AplicarPermisosPorRol();
             hideSubMenu();
         }
 

@@ -13,21 +13,20 @@ namespace ProyectoClinicaDermaCenter2025
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-
-            try
-            {
-                Conexion.Initialize();
-            }
+            try { Conexion.Initialize(); }
             catch (Exception ex)
             {
-
-                MessageBox.Show(
-                "No fue posible preparar la base de datos.\n\n" + ex.Message,
-                "DermaCenter - Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No fue posible preparar la BD.\n\n" + ex.Message, "DermaCenter - Error");
                 return;
             }
 
+            using (var login = new Views.Login_View())
+            {
+                if (login.ShowDialog() != DialogResult.OK) return;
+            }
+
             Application.Run(new DermaCenterInicio());
+
         }
     }
 }
