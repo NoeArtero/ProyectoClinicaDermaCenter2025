@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoClinicaDermaCenter2025.Interfaces.Servicios
 {
-    public interface IFacturacionService
+    public interface IFacturacionServicio
     {
         decimal CalcularTotalAtencion(int atencionId);
         int GenerarFactura(int atencionId, int pacienteId, DateTime fechaEmision);
