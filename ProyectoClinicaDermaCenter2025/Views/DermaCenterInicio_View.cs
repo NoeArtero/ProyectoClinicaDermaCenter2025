@@ -1,5 +1,5 @@
-
 using ProyectoClinicaDermaCenter2025.Recursos;
+using ProyectoClinicaDermaCenter2025.Controllers;
 
 using ProyectoClinicaDermaCenter2025.Views.Aseguradoras_Polizas;
 using ProyectoClinicaDermaCenter2025.Views.Atencion_Servicios;
@@ -64,9 +64,10 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnPacientes_Click(object sender, EventArgs e)
         {
-           Pacientes_View formPacientes = new Pacientes_View();
-            formPacientes.Show();
-            hideSubMenu();
+            this.Hide();
+            Pacientes_View formPacientes = new Pacientes_View();
+            formPacientes.ShowDialog();
+            this.Show();
         }
 
         private void btnCitas_Click(object sender, EventArgs e)

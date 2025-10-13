@@ -30,32 +30,35 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pacientes_View));
             txtNombre = new TextBox();
-            txtDocumento = new TextBox();
-            txtFiltro = new TextBox();
+            txtTelefono = new TextBox();
+            txtCorreo = new TextBox();
             btnGuardar = new Button();
-            btnEliminar = new Button();
+            btnLimpiar = new Button();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
+            txtEdad = new TextBox();
+            cmbSexo = new ComboBox();
             label7 = new Label();
-            comboBox2 = new ComboBox();
+            cmbPais = new ComboBox();
             label8 = new Label();
-            textBox2 = new TextBox();
+            txtContactoF = new TextBox();
             label9 = new Label();
             label10 = new Label();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
             label11 = new Label();
-            label12 = new Label();
             label13 = new Label();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
+            txtDUI = new TextBox();
+            btnRegresar = new Button();
+            btnAseguradoraP = new Button();
+            dtFechaNac = new DateTimePicker();
+            txtDirrec = new TextBox();
+            cmbAlergias = new ComboBox();
+            label12 = new Label();
+            txtOtrasAlergias = new TextBox();
+            lblInstruccionAlergia = new Label();
             SuspendLayout();
             // 
             // txtNombre
@@ -66,40 +69,42 @@
             txtNombre.Size = new Size(222, 23);
             txtNombre.TabIndex = 1;
             // 
-            // txtDocumento
+            // txtTelefono
             // 
-            txtDocumento.BackColor = Color.FromArgb(255, 253, 231);
-            txtDocumento.Location = new Point(217, 226);
-            txtDocumento.Name = "txtDocumento";
-            txtDocumento.Size = new Size(222, 23);
-            txtDocumento.TabIndex = 2;
+            txtTelefono.BackColor = Color.FromArgb(255, 253, 231);
+            txtTelefono.Location = new Point(217, 226);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(222, 23);
+            txtTelefono.TabIndex = 2;
             // 
-            // txtFiltro
+            // txtCorreo
             // 
-            txtFiltro.BackColor = Color.FromArgb(255, 253, 231);
-            txtFiltro.Location = new Point(217, 185);
-            txtFiltro.Name = "txtFiltro";
-            txtFiltro.Size = new Size(222, 23);
-            txtFiltro.TabIndex = 3;
-            txtFiltro.Tag = "";
+            txtCorreo.BackColor = Color.FromArgb(255, 253, 231);
+            txtCorreo.Location = new Point(217, 185);
+            txtCorreo.Name = "txtCorreo";
+            txtCorreo.Size = new Size(222, 23);
+            txtCorreo.TabIndex = 3;
+            txtCorreo.Tag = "";
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(380, 382);
+            btnGuardar.Location = new Point(646, 406);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(75, 23);
+            btnGuardar.Size = new Size(124, 45);
             btnGuardar.TabIndex = 7;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
-            // btnEliminar
+            // btnLimpiar
             // 
-            btnEliminar.Location = new Point(961, 457);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
-            btnEliminar.TabIndex = 9;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = true;
+            btnLimpiar.Location = new Point(840, 406);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(130, 45);
+            btnLimpiar.TabIndex = 9;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click_1;
             // 
             // label1
             // 
@@ -159,41 +164,44 @@
             label6.TabIndex = 15;
             label6.Text = "Sexo";
             // 
-            // textBox1
+            // txtEdad
             // 
-            textBox1.BackColor = Color.FromArgb(255, 253, 231);
-            textBox1.Location = new Point(961, 147);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(54, 23);
-            textBox1.TabIndex = 16;
+            txtEdad.BackColor = Color.FromArgb(255, 253, 231);
+            txtEdad.Location = new Point(961, 147);
+            txtEdad.Name = "txtEdad";
+            txtEdad.Size = new Size(54, 23);
+            txtEdad.TabIndex = 16;
             // 
-            // comboBox1
+            // cmbSexo
             // 
-            comboBox1.BackColor = Color.FromArgb(255, 253, 231);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "M", "F" });
-            comboBox1.Location = new Point(961, 185);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(54, 23);
-            comboBox1.TabIndex = 17;
+            cmbSexo.BackColor = Color.FromArgb(255, 253, 231);
+            cmbSexo.FormattingEnabled = true;
+            cmbSexo.Items.AddRange(new object[] { "M", "F" });
+            cmbSexo.Location = new Point(961, 185);
+            cmbSexo.Name = "cmbSexo";
+            cmbSexo.Size = new Size(54, 23);
+            cmbSexo.TabIndex = 17;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(1100, 150);
+            label7.Location = new Point(1076, 151);
             label7.Name = "label7";
             label7.Size = new Size(28, 15);
             label7.TabIndex = 18;
             label7.Text = "Pais";
             // 
-            // comboBox2
+            // cmbPais
             // 
-            comboBox2.BackColor = Color.FromArgb(255, 253, 231);
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(1158, 148);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(93, 23);
-            comboBox2.TabIndex = 19;
+            cmbPais.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbPais.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbPais.BackColor = Color.FromArgb(255, 253, 231);
+            cmbPais.FormattingEnabled = true;
+            cmbPais.Items.AddRange(new object[] { "El Salvador", "", "Afganistán", "", "Albania", "", "Alemania", "", "Andorra", "", "Angola", "", "Antigua y Barbuda", "", "Arabia Saudita", "", "Argelia", "", "Argentina", "", "Armenia", "", "Australia", "", "Austria", "", "Azerbaiyán", "", "Bahamas", "", "Bangladés", "", "Barbados", "", "Baréin", "", "Bélgica", "", "Belice", "", "Benin", "Bielorrusia", "", "Birmania", "", "Bolivia", "", "Bosnia y Herzegovina", "", "Botsuana", "", "Brasil", "", "Brunéi", "", "Bulgaria", "", "Burkina Faso", "", "Burundi", "", "Bután", "", "Cabo Verde", "", "Camboya", "", "Camerún", "", "Canadá", "", "Catar", "", "Chad", "", "Chile", "", "China", "", "Chipre", "", "Ciudad del Vaticano", "", "Colombia", "", "Comoras", "", "Corea del Norte", "", "Corea del Sur", "", "Costa de Marfil", "", "Costa Rica", "", "Croacia", "", "Cuba", "", "Dinamarca", "", "Dominica", "", "Ecuador", "", "Egipto", "", "Emiratos Árabes Unidos", "", "Eritrea", "", "Eslovaquia", "", "Eslovenia", "", "España", "", "Estados Unidos", "", "Estonia", "", "Etiopía", "", "Filipinas", "", "Finlandia", "", "Fiyi", "", "Francia", "", "Gabón", "", "Gambia", "", "Georgia", "", "Ghana", "", "Granada", "", "Grecia", "", "Guatemala", "", "Guyana", "", "Guinea", "", "Guinea ecuatorial", "", "Guinea-Bisáu", "", "Haití", "", "Honduras", "", "Hungría", "", "India", "", "Indonesia", "", "Irak", "Irán", "", "Irlanda", "", "Islandia", "", "Islas Marshal", "l", "Islas Salomón", "", "Israel", "", "Italia", "", "Jamaica", "", "Japón", "", "Jordania", "", "Kazajistán", "", "Kenia", "", "Kirguistán", "", "Kiribati", "", "Kuwait", "", "Laos", "", "Lesoto", "", "Letonia", "", "Líbano", "", "Liberia", "", "Libia", "", "Liechtenstein", "", "Lituania", "", "Luxemburgo", "", "Macedonia del Norte", "", "Madagascar", "", "Malasia", "", "Malaui", "", "Maldivas", "", "Malí", "", "Malta", "", "Marruecos", "", "Mauricio", "", "Mauritania", "", "México", "", "Micronesia", "", "Moldavia", "", "Mónaco", "", "Mongolia", "", "Montenegro", "", "Mozambique", "", "Namibia", "", "Nauru", "", "Nepal", "", "Nicaragua", "", "Níger", "", "Nigeria", "", "Noruega", "", "Nueva Zelanda", "", "Omán", "", "Países Bajos", "", "Pakistán", "", "Palaos", "", "Panamá", "", "Papúa new Guinea", "", "Paraguay", "", "Perú", "", "Polonia", "", "Portugal", "", "Reino Unido", "", "República Centroafricana", "", "República Checa", "", "República del Congo", "", "República Democrática del Congo", "", "República Dominicana", "", "República Sudafricana", "", "Ruanda", "", "Rumania", "", "Rusia", "", "Samoa", "", "San Cristóbal y Nieves", "", "San Marino", "", "San Vicente y las Granadinas", "", "Santa Lucía", "", "Santo Tomé y Príncipe", "", "Senegal", "", "Serbia", "", "Seychelles", "", "Sierra Leona", "", "Singapur", "", "Siria", "", "Somalia", "", "Sri Lanka", "", "Suazilandia", "", "Sudán", "", "Sudán del Sur", "", "Suecia", "", "Suiza", "", "Surinam", "", "Tailandia", "", "Tanzania", "", "Tayikistán", "", "Timor Oriental", "", "Togo", "", "Tonga", "", "Trinidad y Tobago", "", "Túnez", "", "Turkmenistán", "", "Turquía", "", "Tuvalu", "", "Ucrania", "", "Uganda", "", "Uruguay", "", "Uzbekistán", "", "Vanuatu", "", "Venezuela", "", "Vietnam", "", "Yemen", "", "Yibuti", "", "Zambia", "", "Zimbabue" });
+            cmbPais.Location = new Point(1132, 146);
+            cmbPais.Name = "cmbPais";
+            cmbPais.Size = new Size(93, 23);
+            cmbPais.TabIndex = 19;
             // 
             // label8
             // 
@@ -204,14 +212,14 @@
             label8.TabIndex = 20;
             label8.Text = "DUI";
             // 
-            // textBox2
+            // txtContactoF
             // 
-            textBox2.BackColor = Color.FromArgb(255, 253, 231);
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Location = new Point(700, 147);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(139, 23);
-            textBox2.TabIndex = 21;
+            txtContactoF.BackColor = Color.FromArgb(255, 253, 231);
+            txtContactoF.BorderStyle = BorderStyle.FixedSingle;
+            txtContactoF.Location = new Point(700, 147);
+            txtContactoF.Name = "txtContactoF";
+            txtContactoF.Size = new Size(139, 23);
+            txtContactoF.TabIndex = 21;
             // 
             // label9
             // 
@@ -226,27 +234,11 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(1100, 190);
+            label10.Location = new Point(1076, 188);
             label10.Name = "label10";
             label10.Size = new Size(52, 15);
             label10.TabIndex = 23;
             label10.Text = "Alergias ";
-            // 
-            // textBox3
-            // 
-            textBox3.BackColor = Color.FromArgb(255, 253, 231);
-            textBox3.Location = new Point(583, 226);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(256, 23);
-            textBox3.TabIndex = 24;
-            // 
-            // textBox4
-            // 
-            textBox4.BackColor = Color.FromArgb(255, 253, 231);
-            textBox4.Location = new Point(617, 185);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(222, 23);
-            textBox4.TabIndex = 25;
             // 
             // label11
             // 
@@ -258,15 +250,6 @@
             label11.TabIndex = 26;
             label11.Text = "Contacto de Emergencia Familiar";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(1100, 224);
-            label12.Name = "label12";
-            label12.Size = new Size(127, 15);
-            label12.TabIndex = 27;
-            label12.Text = "Antecedentes Medicos";
-            // 
             // label13
             // 
             label13.AutoSize = true;
@@ -277,97 +260,163 @@
             label13.TabIndex = 28;
             label13.Text = "Fecha/Nacimiento";
             // 
-            // textBox5
+            // txtDUI
             // 
-            textBox5.BackColor = Color.FromArgb(255, 253, 231);
-            textBox5.Location = new Point(961, 221);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(81, 23);
-            textBox5.TabIndex = 29;
+            txtDUI.BackColor = Color.FromArgb(255, 253, 231);
+            txtDUI.Location = new Point(961, 221);
+            txtDUI.Name = "txtDUI";
+            txtDUI.Size = new Size(81, 23);
+            txtDUI.TabIndex = 29;
             // 
-            // textBox6
+            // btnRegresar
             // 
-            textBox6.BackColor = Color.FromArgb(255, 253, 231);
-            textBox6.Location = new Point(1158, 185);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(288, 23);
-            textBox6.TabIndex = 30;
+            btnRegresar.Location = new Point(435, 406);
+            btnRegresar.Name = "btnRegresar";
+            btnRegresar.Size = new Size(121, 45);
+            btnRegresar.TabIndex = 32;
+            btnRegresar.Text = "Regresar";
+            btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
-            // textBox7
+            // btnAseguradoraP
             // 
-            textBox7.BackColor = Color.FromArgb(255, 253, 231);
-            textBox7.Location = new Point(1245, 221);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(201, 23);
-            textBox7.TabIndex = 31;
+            btnAseguradoraP.Location = new Point(630, 265);
+            btnAseguradoraP.Name = "btnAseguradoraP";
+            btnAseguradoraP.Size = new Size(157, 23);
+            btnAseguradoraP.TabIndex = 33;
+            btnAseguradoraP.Text = "Aseguradora/Polizas";
+            btnAseguradoraP.UseVisualStyleBackColor = true;
+            btnAseguradoraP.Click += btnAseguradoraP_Click;
+            // 
+            // dtFechaNac
+            // 
+            dtFechaNac.CalendarMonthBackground = Color.FromArgb(255, 253, 231);
+            dtFechaNac.CalendarTitleBackColor = Color.FromArgb(255, 253, 231);
+            dtFechaNac.Location = new Point(617, 182);
+            dtFechaNac.Name = "dtFechaNac";
+            dtFechaNac.Size = new Size(222, 23);
+            dtFechaNac.TabIndex = 34;
+            // 
+            // txtDirrec
+            // 
+            txtDirrec.BackColor = Color.FromArgb(255, 253, 231);
+            txtDirrec.Location = new Point(617, 221);
+            txtDirrec.Name = "txtDirrec";
+            txtDirrec.Size = new Size(222, 23);
+            txtDirrec.TabIndex = 35;
+            // 
+            // cmbAlergias
+            // 
+            cmbAlergias.BackColor = Color.FromArgb(255, 253, 231);
+            cmbAlergias.FormattingEnabled = true;
+            cmbAlergias.Items.AddRange(new object[] { "Penicilina", "", "Aspirina (AINEs)", "", "Sulfas", "", "Mariscos", "", "Maní (Cacahuates)", "", "Lácteos", "", "Huevo", "", "Trigo (Gluten)", "", "Polen", "", "Ácaros del polvo", "", "Pelo de gato", "", "Pelo de perro", "", "Picaduras de insectos", "", "Látex", "", "Níquel (Metales)", "", "Otros..." });
+            cmbAlergias.Location = new Point(1134, 182);
+            cmbAlergias.Name = "cmbAlergias";
+            cmbAlergias.Size = new Size(121, 23);
+            cmbAlergias.TabIndex = 36;
+            cmbAlergias.SelectedIndexChanged += cmbAlergias_SelectedIndexChanged;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(1076, 226);
+            label12.Name = "label12";
+            label12.Size = new Size(0, 15);
+            label12.TabIndex = 37;
+            label12.Visible = false;
+            // 
+            // txtOtrasAlergias
+            // 
+            txtOtrasAlergias.BackColor = Color.FromArgb(255, 253, 231);
+            txtOtrasAlergias.Location = new Point(1190, 216);
+            txtOtrasAlergias.Name = "txtOtrasAlergias";
+            txtOtrasAlergias.Size = new Size(132, 23);
+            txtOtrasAlergias.TabIndex = 38;
+            // 
+            // lblInstruccionAlergia
+            // 
+            lblInstruccionAlergia.AutoSize = true;
+            lblInstruccionAlergia.Location = new Point(1076, 224);
+            lblInstruccionAlergia.Name = "lblInstruccionAlergia";
+            lblInstruccionAlergia.Size = new Size(0, 15);
+            lblInstruccionAlergia.TabIndex = 39;
             // 
             // Pacientes_View
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(1483, 637);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(label13);
+            ClientSize = new Size(1449, 559);
+            Controls.Add(lblInstruccionAlergia);
+            Controls.Add(txtOtrasAlergias);
             Controls.Add(label12);
+            Controls.Add(cmbAlergias);
+            Controls.Add(txtDirrec);
+            Controls.Add(dtFechaNac);
+            Controls.Add(btnAseguradoraP);
+            Controls.Add(btnRegresar);
+            Controls.Add(txtDUI);
+            Controls.Add(label13);
             Controls.Add(label11);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
             Controls.Add(label10);
             Controls.Add(label9);
-            Controls.Add(textBox2);
+            Controls.Add(txtContactoF);
             Controls.Add(label8);
-            Controls.Add(comboBox2);
+            Controls.Add(cmbPais);
             Controls.Add(label7);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
+            Controls.Add(cmbSexo);
+            Controls.Add(txtEdad);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(btnEliminar);
+            Controls.Add(btnLimpiar);
             Controls.Add(btnGuardar);
-            Controls.Add(txtFiltro);
-            Controls.Add(txtDocumento);
+            Controls.Add(txtCorreo);
+            Controls.Add(txtTelefono);
             Controls.Add(txtNombre);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Pacientes_View";
             Text = "Pacientes";
+            Load += Pacientes_View_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private TextBox txtNombre;
-        private TextBox txtDocumento;
-        private TextBox txtFiltro;
+        private TextBox txtTelefono;
+        private TextBox txtCorreo;
         private Button btnGuardar;
-        private Button btnEliminar;
+        private Button btnLimpiar;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
+        private TextBox txtEdad;
+        private ComboBox cmbSexo;
         private Label label7;
-        private ComboBox comboBox2;
+        private ComboBox cmbPais;
         private Label label8;
-        private TextBox textBox2;
+        private TextBox txtContactoF;
         private Label label9;
         private Label label10;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox txtDireccion;
+        private TextBox txtFechaNac;
         private Label label11;
-        private Label label12;
         private Label label13;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
+        private TextBox txtDUI;
+        private Button btnRegresar;
+        private Button btnAseguradoraP;
+        private DateTimePicker dtFechaNac;
+        private TextBox txtDirrec;
+        private ComboBox cmbAlergias;
+        private Label label12;
+        private TextBox txtOtrasAlergias;
+        private Label lblInstruccionAlergia;
     }
 }

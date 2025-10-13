@@ -45,7 +45,7 @@
             btnInventario = new Button();
             btnInventarioFarmacia = new Button();
             panelAtencionCl = new Panel();
-            btnAseguradoras = new Button();
+            btnMedico = new Button();
             btnServicios = new Button();
             btnCitas = new Button();
             btnPacientes = new Button();
@@ -273,7 +273,7 @@
             // panelAtencionCl
             // 
             panelAtencionCl.BackColor = Color.FromArgb(15, 23, 42);
-            panelAtencionCl.Controls.Add(btnAseguradoras);
+            panelAtencionCl.Controls.Add(btnMedico);
             panelAtencionCl.Controls.Add(btnServicios);
             panelAtencionCl.Controls.Add(btnCitas);
             panelAtencionCl.Controls.Add(btnPacientes);
@@ -283,19 +283,19 @@
             panelAtencionCl.Size = new Size(331, 170);
             panelAtencionCl.TabIndex = 8;
             // 
-            // btnAseguradoras
+            // btnMedico
             // 
-            btnAseguradoras.Dock = DockStyle.Top;
-            btnAseguradoras.FlatAppearance.BorderSize = 0;
-            btnAseguradoras.FlatStyle = FlatStyle.Flat;
-            btnAseguradoras.ForeColor = SystemColors.ButtonFace;
-            btnAseguradoras.Location = new Point(0, 120);
-            btnAseguradoras.Name = "btnAseguradoras";
-            btnAseguradoras.Size = new Size(331, 40);
-            btnAseguradoras.TabIndex = 8;
-            btnAseguradoras.Text = "Aseguradoras / Polizas";
-            btnAseguradoras.UseVisualStyleBackColor = true;
-            btnAseguradoras.Click += btnAseguradoras_Click;
+            btnMedico.Dock = DockStyle.Top;
+            btnMedico.FlatAppearance.BorderSize = 0;
+            btnMedico.FlatStyle = FlatStyle.Flat;
+            btnMedico.ForeColor = SystemColors.ButtonFace;
+            btnMedico.Location = new Point(0, 120);
+            btnMedico.Name = "btnMedico";
+            btnMedico.Size = new Size(331, 40);
+            btnMedico.TabIndex = 8;
+            btnMedico.Text = "Personal Medico";
+            btnMedico.UseVisualStyleBackColor = true;
+            btnMedico.Click += btnAseguradoras_Click;
             // 
             // btnServicios
             // 
@@ -402,7 +402,7 @@
         private Button btnCitas;
         private Button btnAtencionCl;
         private Panel panelAtencionCl;
-        private Button btnAseguradoras;
+        private Button btnMedico;
         private Button btnServicios;
         private Button btnPacientes;
         private Button btnProveedores;

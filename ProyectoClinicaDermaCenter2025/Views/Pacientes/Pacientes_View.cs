@@ -1,240 +1,284 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ProyectoClinicaDermaCenter2025.ConexionDB;
+using ProyectoClinicaDermaCenter2025.Controllers;
+using ProyectoClinicaDermaCenter2025.Interfaces.Repositorios;
+using ProyectoClinicaDermaCenter2025.Models.Pacientes;
+using ProyectoClinicaDermaCenter2025.Views.Aseguradoras_Polizas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-using ProyectoClinicaDermaCenter2025.Controllers;
-using ProyectoClinicaDermaCenter2025.Interfaces.Repositorios;
-using ProyectoClinicaDermaCenter2025.Models.Pacientes;
-using ProyectoClinicaDermaCenter2025.Models.stubs;
+
+
 
 namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
 {
     public partial class Pacientes_View : Form
     {
-        private readonly PacienteController _controller;
-        private readonly BindingSource _bs = new BindingSource();
 
-        public Pacientes_View() : this(new PacienteController(new PacienteRepositoryStub())) { }
 
-        public Pacientes_View(PacienteController controller)
+        public Pacientes_View()
         {
             InitializeComponent();
-            _controller = controller;
-
-            this.Load += Pacientes_View_Load;
-            dgvPacientes.SelectionChanged += (s, e) => LlenarCamposDesdeSeleccion();
-            btnListar.Click += (s, e) => CargarPacientes();
-            btnBuscar.Click += (s, e) => Buscar();
-            btnNuevo.Click += (s, e) => Limpiar();
-            btnGuardar.Click += (s, e) => GuardarNuevo();
-            btnEditar.Click += (s, e) => GuardarEdicion();
-            btnEliminar.Click += (s, e) => EliminarSeleccionado();
-
-            ConfigurarGrilla();
         }
 
-        private void ConfigurarGrilla()
+        private void Pacientes_View_Load(object sender, EventArgs e)
         {
-            dgvPacientes.AutoGenerateColumns = false;
-            dgvPacientes.Columns.Clear();
 
-            dgvPacientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colId",
-                HeaderText = "Id",
-                DataPropertyName = "Id",
-                ReadOnly = true,
-                Width = 60
-            });
-            dgvPacientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colNombre",
-                HeaderText = "Nombre",
-                DataPropertyName = "Nombre",
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-            });
-            dgvPacientes.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "colDocumento",
-                HeaderText = "Documento",
-                DataPropertyName = "Documento",
-                Width = 150
-            });
-
-            dgvPacientes.DataSource = _bs;
         }
 
-        private void Pacientes_View_Load(object sender, EventArgs e) => CargarPacientes();
-
-        private void CargarPacientes()
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDUI.Text))
+            {
+                MessageBox.Show("El nombre completo y el DNI son obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                var data = _controller.Listar(txtFiltro.Text?.Trim());
-                var rows = data.Select(ToRow).ToList();
-                _bs.DataSource = new BindingList<PacienteRow>(rows);
-                dgvPacientes.Refresh();
-                if (dgvPacientes.Rows.Count > 0) dgvPacientes.Rows[0].Selected = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error al listar", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private void Buscar()
-        {
-            try
-            {
-                var filtro = txtFiltro.Text?.Trim();
-                if (string.IsNullOrWhiteSpace(filtro))
+                string connectionString = ProyectoClinicaDermaCenter2025.ConexionDB.Conexion.AppConnectionString;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    CargarPacientes();
-                    return;
-                }
+                    con.Open();
+                    int nuevoIdPersona = 0;
 
-                var p = _controller.BuscarPorDocumento(filtro);
-                var lista = new List<Paciente>();
-                if (p != null) lista.Add(p);
+                    string personaQuery = @"
+                INSERT INTO PERSONA (DUI, Nombre, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
+                VALUES (@DUI, @Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
+                SELECT SCOPE_IDENTITY();";
 
-                _bs.DataSource = new BindingList<PacienteRow>(lista.Select(ToRow).ToList());
-                dgvPacientes.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error en búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                    // Separar nombre completo a Nombre y apellidos
+                    string nombreCompleto = txtNombre.Text.Trim();
+                    string nombre = nombreCompleto;
+                    string apellidos = "";
+                    int primerEspacio = nombreCompleto.IndexOf(' ');
+                    if (primerEspacio != -1)
+                    {
+                        nombre = nombreCompleto.Substring(0, primerEspacio);
+                        apellidos = nombreCompleto.Substring(primerEspacio + 1);
+                    }
 
-        private void GuardarNuevo()
-        {
-            try
-            {
-                var p = new Paciente();
-                SetPropSiExiste(p, "Nombre", txtNombre.Text?.Trim());
-                SetPropSiExiste(p, "Documento", txtDocumento.Text?.Trim());
+                    using (SqlCommand cmdPersona = new SqlCommand(personaQuery, con))
+                    {
+                        cmdPersona.Parameters.AddWithValue("@DUI", txtDUI.Text);
+                        cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
+                        cmdPersona.Parameters.AddWithValue("@Apellidos", apellidos);
+                        cmdPersona.Parameters.AddWithValue("@FechaNacimiento", dtFechaNac.Value);
+                        cmdPersona.Parameters.AddWithValue("@Direccion", txtDirrec.Text);
+                        cmdPersona.Parameters.AddWithValue("@Sexo", cmbSexo.Text);
+                        cmdPersona.Parameters.AddWithValue("@Pais", cmbPais.Text);
 
-                var res = _controller.crear(p); 
-                MessageBox.Show(res.msg, res.ok ? "OK" : "Error",
-                    MessageBoxButtons.OK, res.ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                        nuevoIdPersona = Convert.ToInt32(cmdPersona.ExecuteScalar());
+                    }
 
-                if (res.ok) { Limpiar(); CargarPacientes(); }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error al crear", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+                    if (nuevoIdPersona > 0)
+                    {
+                        // Guardar en la tabla paciente
+                        string pacienteQuery = "INSERT INTO PACIENTE (ID_Paciente) VALUES (@ID_Paciente);";
+                        using (SqlCommand cmdPaciente = new SqlCommand(pacienteQuery, con))
+                        {
+                            cmdPaciente.Parameters.AddWithValue("@ID_Paciente", nuevoIdPersona);
+                            cmdPaciente.ExecuteNonQuery();
+                        }
 
-        private void GuardarEdicion()
-        {
-            try
-            {
-                if (dgvPacientes.CurrentRow?.DataBoundItem is PacienteRow row)
-                {
-                    var p = new Paciente();
-                    SetPropSiExiste(p, "Id", row.Id); 
-                    SetPropSiExiste(p, "Nombre", txtNombre.Text?.Trim());
-                    SetPropSiExiste(p, "Documento", txtDocumento.Text?.Trim());
+                        // Guardar en la tabla Contacto
+                        string contactoQuery = "INSERT INTO CONTACTO (ID_Persona, TipoContacto, ValorContacto) VALUES (@ID_Persona, @Tipo, @Valor);";
+                        if (!string.IsNullOrWhiteSpace(txtCorreo.Text))
+                        {
+                            using (SqlCommand cmdCorreo = new SqlCommand(contactoQuery, con))
+                            {
+                                cmdCorreo.Parameters.AddWithValue("@ID_Persona", nuevoIdPersona);
+                                cmdCorreo.Parameters.AddWithValue("@Tipo", "Correo");
+                                cmdCorreo.Parameters.AddWithValue("@Valor", txtCorreo.Text);
+                                cmdCorreo.ExecuteNonQuery();
+                            }
+                        }
+                        if (!string.IsNullOrWhiteSpace(txtTelefono.Text))
+                        {
+                            using (SqlCommand cmdTelefono = new SqlCommand(contactoQuery, con))
+                            {
+                                cmdTelefono.Parameters.AddWithValue("@ID_Persona", nuevoIdPersona);
+                                cmdTelefono.Parameters.AddWithValue("@Tipo", "Teléfono");
+                                cmdTelefono.Parameters.AddWithValue("@Valor", txtTelefono.Text);
+                                cmdTelefono.ExecuteNonQuery();
+                            }
+                        }
 
-                    var res = _controller.Editar(p);
-                    MessageBox.Show(res.msg, res.ok ? "OK" : "Error",
-                        MessageBoxButtons.OK, res.ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                        // Guardar en HISTORIAL MEDICO
+                        string historialQuery = "INSERT INTO HISTORIAL_MEDICO (ID_Paciente, TipoRegistro, Descripcion) VALUES (@ID_Paciente, @Tipo, @Desc);";
 
-                    if (res.ok) { Limpiar(); CargarPacientes(); }
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione un registro para editar.", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        if (cmbAlergias.SelectedItem != null && !string.IsNullOrEmpty(cmbAlergias.Text))
+                        {
+                            using (SqlCommand cmdHistorial = new SqlCommand(historialQuery, con))
+                            {
+                                cmdHistorial.Parameters.AddWithValue("@ID_Paciente", nuevoIdPersona);
+                                cmdHistorial.Parameters.AddWithValue("@Tipo", "Alergia");
+                                cmdHistorial.Parameters.AddWithValue("@Desc", cmbAlergias.SelectedItem.ToString());
+                                cmdHistorial.ExecuteNonQuery();
+                            }
+                        }
+                       
+                        if (!string.IsNullOrWhiteSpace(txtOtrasAlergias.Text))
+                        {
+                            using (SqlCommand cmdHistorial = new SqlCommand(historialQuery, con))
+                            {
+                                cmdHistorial.Parameters.AddWithValue("@ID_Paciente", nuevoIdPersona);
+                                cmdHistorial.Parameters.AddWithValue("@Tipo", "Alergia (Otras)");
+                                cmdHistorial.Parameters.AddWithValue("@Desc", txtOtrasAlergias.Text);
+                                cmdHistorial.ExecuteNonQuery();
+                            }
+                        }
+                        MessageBox.Show("¡Paciente registrado exitosamente con toda su información!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al editar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al guardar el paciente: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void EliminarSeleccionado()
+        private void btnRegresar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            txtDUI.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            txtDireccion.Clear();
+
+            cmbPais.SelectedIndex = -1;
+            cmbAlergias.SelectedIndex = -1;
+            cmbSexo.SelectedIndex = -1;
+            dtFechaNac.Value = DateTime.Now;
+            txtNombre.Focus();
+        }
+
+        private void btnAseguradoraP_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDUI.Text))
+            {
+                MessageBox.Show("Para agregar una aseguradora, primero debes llenar el nombre completo y el DNI del paciente.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int nuevoIdPersona = 0;
+
             try
             {
-                if (dgvPacientes.CurrentRow?.DataBoundItem is PacienteRow row)
+                string connectionString = Conexion.AppConnectionString;
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    if (MessageBox.Show("¿Eliminar el paciente seleccionado?", "Confirmar",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+                    con.Open();
 
-                    var res = _controller.Eliminar(row.Id);
-                    MessageBox.Show(res.msg, res.ok ? "OK" : "Error",
-                        MessageBoxButtons.OK, res.ok ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+                    string personaQuery = @"
+                INSERT INTO PERSONA (DUI, Nombre, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
+                VALUES (@DUI, @Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
+                SELECT SCOPE_IDENTITY();";
 
-                    if (res.ok) { Limpiar(); CargarPacientes(); }
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione un registro para eliminar.", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string nombreCompleto = txtNombre.Text.Trim();
+                    string nombre = nombreCompleto;
+                    string apellidos = "";
+                    int primerEspacio = nombreCompleto.IndexOf(' ');
+                    if (primerEspacio != -1)
+                    {
+                        nombre = nombreCompleto.Substring(0, primerEspacio);
+                        apellidos = nombreCompleto.Substring(primerEspacio + 1);
+                    }
+
+                    using (SqlCommand cmdPersona = new SqlCommand(personaQuery, con))
+                    {
+                        cmdPersona.Parameters.AddWithValue("@DUI", txtDUI.Text);
+                        cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
+                        cmdPersona.Parameters.AddWithValue("@Apellidos", apellidos);
+                        cmdPersona.Parameters.AddWithValue("@FechaNacimiento", dtFechaNac.Value);
+                        cmdPersona.Parameters.AddWithValue("@Direccion", txtDirrec.Text);
+                        cmdPersona.Parameters.AddWithValue("@Sexo", cmbSexo.Text);
+                        cmdPersona.Parameters.AddWithValue("@Pais", cmbPais.Text);
+
+                        // Esta línea guarda al paciente y obtiene el nuevo ID
+                        nuevoIdPersona = Convert.ToInt32(cmdPersona.ExecuteScalar());
+                    }
+
+                    // ---  SI EL PACIENTE SE CREÓ, GUARDAR DATOS RELACIONADOS ---
+                    if (nuevoIdPersona > 0)
+                    {
+                        // Guardar en PACIENTE
+                        string pacienteQuery = "INSERT INTO PACIENTE (ID_Paciente) VALUES (@ID_Paciente);";
+                        using (SqlCommand cmdPaciente = new SqlCommand(pacienteQuery, con))
+                        {
+                            cmdPaciente.Parameters.AddWithValue("@ID_Paciente", nuevoIdPersona);
+                            cmdPaciente.ExecuteNonQuery();
+                        }
+
+
+                    }
+
+                    if (nuevoIdPersona > 0)
+                    {
+                        MessageBox.Show("Paciente guardado. Ahora, por favor, registra la aseguradora.", "Paso 1 Completo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        this.Hide(); // Ocultamos el form de pacientes
+                        AseguradorasYPolizas_View formAseguradora = new AseguradorasYPolizas_View(nuevoIdPersona);
+                        formAseguradora.ShowDialog();
+                        this.Show(); // Lo volvemos a mostrar cuando el de aseguradoras se cierre
+                    }
+                    else
+                    {
+                        // Si por alguna razón el ID sigue siendo 0 después de intentar guardar, mostramos el mensaje de error
+                        MessageBox.Show("No se pudo obtener el ID del nuevo paciente. No se puede continuar al registro de la aseguradora.", "Error de Guardado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al eliminar", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al guardar el paciente: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void Limpiar()
+        private void cmbAlergias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtNombre.Text = string.Empty;
-            txtDocumento.Text = string.Empty;
-            dgvPacientes.ClearSelection();
-        }
-
-        private void LlenarCamposDesdeSeleccion()
-        {
-            if (dgvPacientes.CurrentRow?.DataBoundItem is PacienteRow row)
+            // 1. Revisar si el item seleccionado es "Otros..."
+            if (cmbAlergias.SelectedItem != null && cmbAlergias.SelectedItem.ToString() == "Otros...")
             {
-                txtNombre.Text = row.Nombre ?? string.Empty;
-                txtDocumento.Text = row.Documento ?? string.Empty;
+                // Si es Otros..., hacemos visible el Label y el TextBox y saldra lo que dice el label xd.
+                lblInstruccionAlergia.Text = "Especifique cuál:";
+                lblInstruccionAlergia.Visible = true;
+                txtOtrasAlergias.Visible = true;
+                txtOtrasAlergias.Focus(); 
+            }
+            else
+            {
+                // Si se selecciona cualquier otra cosa, ocultamos los controles osea el label y textbox .
+                lblInstruccionAlergia.Visible = false;
+                txtOtrasAlergias.Visible = false;
+                txtOtrasAlergias.Clear();
             }
         }
 
-        private sealed class PacienteRow
+        private void btnLimpiar_Click_1(object sender, EventArgs e)
         {
-            public int Id { get; set; }
-            public string Nombre { get; set; }
-            public string Documento { get; set; }
-        }
-
-        private static PacienteRow ToRow(Paciente p) => new PacienteRow
-        {
-            Id = GetIntProp(p, "Id") ?? 0,
-            Nombre = GetStringProp(p, "Nombre") ?? GetStringProp(p, "Nombres") ?? "",
-            Documento = GetStringProp(p, "Documento") ?? GetStringProp(p, "DUI") ?? ""
-        };
-
-        private static void SetPropSiExiste(object obj, string propName, object value)
-        {
-            var p = obj.GetType().GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
-            if (p != null && p.CanWrite) p.SetValue(obj, value);
-        }
-
-        private static int? GetIntProp(object obj, string prop)
-        {
-            var p = obj.GetType().GetProperty(prop, BindingFlags.Public | BindingFlags.Instance);
-            if (p == null) return null;
-            var v = p.GetValue(obj);
-            if (v == null) return null;
-            if (v is int i) return i;
-            return int.TryParse(v.ToString(), out var parsed) ? parsed : null;
-        }
-
-        private static string GetStringProp(object obj, string prop)
-        {
-            var p = obj.GetType().GetProperty(prop, BindingFlags.Public | BindingFlags.Instance);
-            return p?.GetValue(obj)?.ToString();
+            // Limpiar Campos de Texto
+            txtNombre.Clear();
+            txtDUI.Clear();
+            txtCorreo.Clear();
+            txtTelefono.Clear();
+            txtDirrec.Clear();
+            txtOtrasAlergias.Clear(); 
+            cmbPais.SelectedIndex = -1;
+            cmbAlergias.SelectedIndex = -1;
+            cmbSexo.SelectedIndex = -1;
+            dtFechaNac.Value = DateTime.Now;
+            txtNombre.Focus();
         }
     }
 }
