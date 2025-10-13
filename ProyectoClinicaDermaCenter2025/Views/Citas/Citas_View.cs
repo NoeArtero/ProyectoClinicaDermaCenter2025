@@ -16,5 +16,15 @@ namespace ProyectoClinicaDermaCenter2025.Views.Citas
         {
             InitializeComponent();
         }
+
+        private void Citas_View_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReprogramar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
