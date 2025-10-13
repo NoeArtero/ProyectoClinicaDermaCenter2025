@@ -35,7 +35,7 @@ namespace ProyectoClinicaDermaCenter2025.ConexionDB
             return false;
         }
 
-        // Lista de candidatos: comunes y descubiertos por enumeración
+        // Lista de posibles bases locales
         private static IEnumerable<string> GetCandidateServers()
         {
             var list = new List<string>
@@ -66,7 +66,7 @@ namespace ProyectoClinicaDermaCenter2025.ConexionDB
 
             }
 
-            // Quita duplicados y prioriza primeros intentos
+            // Quita duplicados 
             return list.Where(s => !string.IsNullOrWhiteSpace(s))
                        .Select(s => s.Trim())
                        .Distinct(StringComparer.OrdinalIgnoreCase);
