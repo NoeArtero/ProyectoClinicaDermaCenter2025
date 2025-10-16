@@ -84,19 +84,19 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnPacientes_Click(object sender, EventArgs e)
         {
-            Pacientes_View formPacientes = new Pacientes_View();
-            formPacientes.Show();
+            var form = new Pacientes_View();
+            form.FormClosed += (s, args) => this.Show(); 
+            form.Show();
             this.Hide();
-
             hideSubMenu();
         }
 
         private void btnCitas_Click(object sender, EventArgs e)
         {
-            Citas_View formCitas = new Citas_View();
-            formCitas.Show();
+            var form = new Citas_View();
+            form.FormClosed += (s, args) => this.Show(); 
+            form.Show();
             this.Hide();
-
             hideSubMenu();
         }
 
@@ -172,7 +172,7 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnFacturacion_Click(object sender, EventArgs e)
         {
-            Facturacion_View formFacturacion = new Facturacion_View();
+            var formFacturacion = new Facturacion_View(this);  
             formFacturacion.Show();
             this.Hide();
 
