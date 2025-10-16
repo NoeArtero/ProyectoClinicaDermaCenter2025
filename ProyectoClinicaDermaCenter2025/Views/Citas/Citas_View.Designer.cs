@@ -51,18 +51,19 @@
             cmbPaciente = new ComboBox();
             panelX = new Panel();
             panel1 = new Panel();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            label7 = new Label();
-            label8 = new Label();
-            txtMotivo = new TextBox();
-            label9 = new Label();
-            label10 = new Label();
-            txtNotas = new TextBox();
-            errorCitas = new ErrorProvider(components);
+            btnCompletada = new Button();
             btnReprogramar = new Button();
+            label10 = new Label();
             btnCancelarCita = new Button();
+            txtNotas = new TextBox();
             btnCrear = new Button();
+            label9 = new Label();
+            txtMotivo = new TextBox();
+            label8 = new Label();
+            label7 = new Label();
+            dateTimePicker2 = new DateTimePicker();
+            dateTimePicker1 = new DateTimePicker();
+            errorCitas = new ErrorProvider(components);
             btnRegresar = new Button();
             toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCitas).BeginInit();
@@ -97,6 +98,7 @@
             dgvCitas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCitas.Size = new Size(1000, 372);
             dgvCitas.TabIndex = 6;
+            dgvCitas.SelectionChanged += dgvCitas_SelectionChanged;
             // 
             // dtpFecha
             // 
@@ -177,6 +179,7 @@
             btnBuscar.TabIndex = 6;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // btnListar
             // 
@@ -302,10 +305,12 @@
             panelX.Name = "panelX";
             panelX.Size = new Size(1370, 121);
             panelX.TabIndex = 5;
+            panelX.Paint += panelX_Paint;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(11, 18, 32);
+            panel1.Controls.Add(btnCompletada);
             panel1.Controls.Add(btnReprogramar);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(btnCancelarCita);
@@ -324,56 +329,70 @@
             panel1.Size = new Size(1370, 107);
             panel1.TabIndex = 17;
             // 
-            // dateTimePicker1
+            // btnCompletada
             // 
-            dateTimePicker1.CustomFormat = "HH:mm";
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(300, 18);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(106, 23);
-            dateTimePicker1.TabIndex = 17;
+            btnCompletada.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnCompletada.Location = new Point(1065, 62);
+            btnCompletada.Name = "btnCompletada";
+            btnCompletada.Size = new Size(112, 29);
+            btnCompletada.TabIndex = 25;
+            btnCompletada.Text = "Completada";
+            btnCompletada.UseVisualStyleBackColor = true;
+            btnCompletada.Click += btnCompletada_Click;
             // 
-            // dateTimePicker2
+            // btnReprogramar
             // 
-            dateTimePicker2.CustomFormat = "HH:mm";
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.Location = new Point(300, 69);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(106, 23);
-            dateTimePicker2.TabIndex = 18;
+            btnReprogramar.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnReprogramar.Location = new Point(1227, 20);
+            btnReprogramar.Name = "btnReprogramar";
+            btnReprogramar.Size = new Size(112, 29);
+            btnReprogramar.TabIndex = 18;
+            btnReprogramar.Text = "Reprogramar";
+            btnReprogramar.UseVisualStyleBackColor = true;
+            btnReprogramar.Click += btnReprogramar_Click;
             // 
-            // label7
+            // label10
             // 
-            label7.AutoSize = true;
-            label7.BackColor = Color.FromArgb(15, 23, 42);
-            label7.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            label7.ForeColor = SystemColors.ButtonFace;
-            label7.Location = new Point(185, 20);
-            label7.Name = "label7";
-            label7.Size = new Size(109, 20);
-            label7.TabIndex = 19;
-            label7.Text = "Hora de inicio:";
+            label10.AutoSize = true;
+            label10.BackColor = Color.FromArgb(15, 23, 42);
+            label10.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            label10.ForeColor = SystemColors.ButtonFace;
+            label10.Location = new Point(751, 20);
+            label10.Name = "label10";
+            label10.Size = new Size(53, 20);
+            label10.TabIndex = 24;
+            label10.Text = "Notas:";
             // 
-            // label8
+            // btnCancelarCita
             // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.FromArgb(15, 23, 42);
-            label8.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            label8.ForeColor = SystemColors.ButtonFace;
-            label8.Location = new Point(204, 71);
-            label8.Name = "label8";
-            label8.Size = new Size(90, 20);
-            label8.TabIndex = 20;
-            label8.Text = "Hora de fin:";
+            btnCancelarCita.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnCancelarCita.Location = new Point(1227, 63);
+            btnCancelarCita.Name = "btnCancelarCita";
+            btnCancelarCita.Size = new Size(112, 29);
+            btnCancelarCita.TabIndex = 17;
+            btnCancelarCita.Text = "Cancelar";
+            btnCancelarCita.UseVisualStyleBackColor = true;
+            btnCancelarCita.Click += btnCancelarCita_Click;
             // 
-            // txtMotivo
+            // txtNotas
             // 
-            txtMotivo.Location = new Point(513, 17);
-            txtMotivo.Multiline = true;
-            txtMotivo.Name = "txtMotivo";
-            txtMotivo.ScrollBars = ScrollBars.Vertical;
-            txtMotivo.Size = new Size(223, 75);
-            txtMotivo.TabIndex = 21;
+            txtNotas.Location = new Point(819, 17);
+            txtNotas.Multiline = true;
+            txtNotas.Name = "txtNotas";
+            txtNotas.ScrollBars = ScrollBars.Vertical;
+            txtNotas.Size = new Size(223, 75);
+            txtNotas.TabIndex = 23;
+            // 
+            // btnCrear
+            // 
+            btnCrear.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnCrear.Location = new Point(1069, 20);
+            btnCrear.Name = "btnCrear";
+            btnCrear.Size = new Size(108, 29);
+            btnCrear.TabIndex = 16;
+            btnCrear.Text = "Crear";
+            btnCrear.UseVisualStyleBackColor = true;
+            btnCrear.Click += btnCrear_Click;
             // 
             // label9
             // 
@@ -387,61 +406,60 @@
             label9.TabIndex = 22;
             label9.Text = "Motivo:";
             // 
-            // label10
+            // txtMotivo
             // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.FromArgb(15, 23, 42);
-            label10.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            label10.ForeColor = SystemColors.ButtonFace;
-            label10.Location = new Point(751, 20);
-            label10.Name = "label10";
-            label10.Size = new Size(62, 20);
-            label10.TabIndex = 24;
-            label10.Text = "Motivo:";
+            txtMotivo.Location = new Point(513, 17);
+            txtMotivo.Multiline = true;
+            txtMotivo.Name = "txtMotivo";
+            txtMotivo.ScrollBars = ScrollBars.Vertical;
+            txtMotivo.Size = new Size(223, 75);
+            txtMotivo.TabIndex = 21;
             // 
-            // txtNotas
+            // label8
             // 
-            txtNotas.Location = new Point(819, 17);
-            txtNotas.Multiline = true;
-            txtNotas.Name = "txtNotas";
-            txtNotas.ScrollBars = ScrollBars.Vertical;
-            txtNotas.Size = new Size(223, 75);
-            txtNotas.TabIndex = 23;
+            label8.AutoSize = true;
+            label8.BackColor = Color.FromArgb(15, 23, 42);
+            label8.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            label8.ForeColor = SystemColors.ButtonFace;
+            label8.Location = new Point(204, 71);
+            label8.Name = "label8";
+            label8.Size = new Size(90, 20);
+            label8.TabIndex = 20;
+            label8.Text = "Hora de fin:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.FromArgb(15, 23, 42);
+            label7.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            label7.ForeColor = SystemColors.ButtonFace;
+            label7.Location = new Point(185, 20);
+            label7.Name = "label7";
+            label7.Size = new Size(109, 20);
+            label7.TabIndex = 19;
+            label7.Text = "Hora de inicio:";
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.CustomFormat = "HH:mm";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.Location = new Point(300, 69);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(106, 23);
+            dateTimePicker2.TabIndex = 18;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.CustomFormat = "HH:mm";
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.Location = new Point(300, 18);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(106, 23);
+            dateTimePicker1.TabIndex = 17;
             // 
             // errorCitas
             // 
             errorCitas.ContainerControl = this;
-            // 
-            // btnReprogramar
-            // 
-            btnReprogramar.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            btnReprogramar.Location = new Point(1153, 40);
-            btnReprogramar.Name = "btnReprogramar";
-            btnReprogramar.Size = new Size(112, 29);
-            btnReprogramar.TabIndex = 18;
-            btnReprogramar.Text = "Reprogramar";
-            btnReprogramar.UseVisualStyleBackColor = true;
-            btnReprogramar.Click += btnReprogramar_Click;
-            // 
-            // btnCancelarCita
-            // 
-            btnCancelarCita.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            btnCancelarCita.Location = new Point(1282, 40);
-            btnCancelarCita.Name = "btnCancelarCita";
-            btnCancelarCita.Size = new Size(76, 29);
-            btnCancelarCita.TabIndex = 17;
-            btnCancelarCita.Text = "Cancelar";
-            btnCancelarCita.UseVisualStyleBackColor = true;
-            // 
-            // btnCrear
-            // 
-            btnCrear.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            btnCrear.Location = new Point(1061, 40);
-            btnCrear.Name = "btnCrear";
-            btnCrear.Size = new Size(77, 29);
-            btnCrear.TabIndex = 16;
-            btnCrear.Text = "Crear";
-            btnCrear.UseVisualStyleBackColor = true;
             // 
             // btnRegresar
             // 
@@ -452,6 +470,7 @@
             btnRegresar.TabIndex = 25;
             btnRegresar.Text = "Regresar";
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // Citas_View
             // 
@@ -516,5 +535,6 @@
         private TextBox txtMotivo;
         private ErrorProvider errorCitas;
         private Button btnRegresar;
+        private Button btnCompletada;
     }
 }
