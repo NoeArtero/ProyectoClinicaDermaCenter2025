@@ -163,11 +163,16 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnPagos_Click(object sender, EventArgs e)
         {
-            PagosDeudas_View formPagos = new PagosDeudas_View();    
-            formPagos.Show();
-            this.Hide();
+            var v = new ProyectoClinicaDermaCenter2025.Views.Pagos.Pagos_View();
 
-            hideSubMenu();
+            v.FormClosed += (_, __) =>
+            {
+                this.Show();
+                this.BringToFront();
+            };
+
+            this.Hide();
+            v.Show();
         }
 
         private void btnFacturacion_Click(object sender, EventArgs e)
