@@ -261,6 +261,38 @@ GROUP BY MetodoPago;";
             return sb.ToString();
         }
 
+        private void ReporteQuincenalView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                var menu = BuscarMenuInicio();
+                if (menu != null)
+                {
+                    menu.Show();
+                    menu.BringToFront();
+                }
+            }
+        }
+
+
+        private Form BuscarMenuInicio()
+        {
+            foreach (Form frm in Application.OpenForms)
+                if (frm.Name == "DermaCenterInicio") 
+                    return frm;
+            return null; 
+        }
+        private void CerrarYVolverAlMenu()
+        {
+            var menu = BuscarMenuInicio();
+            if (menu != null)
+            {
+                menu.Show();
+                menu.BringToFront();
+            }
+            this.Close();
+        }
+
         public ReporteQuincenalView()
         {
             InitializeComponent();
@@ -273,6 +305,10 @@ GROUP BY MetodoPago;";
             if (btnHoyReporte != null) btnHoyReporte.Click += (s, e) => SetRangoQuick(DateTime.Today, DateTime.Today.AddDays(1));
             if (btnAyerReporte != null) btnAyerReporte.Click += (s, e) => { var hoy = DateTime.Today; SetRangoQuick(hoy.AddDays(-1), hoy); };
             if (btnUltimos15 != null) btnUltimos15.Click += (s, e) => { var hoy = DateTime.Today; SetRangoQuick(hoy.AddDays(-14), hoy.AddDays(1)); };
+
+            if (btnRegresar != null) btnRegresar.Click += (s, e) => CerrarYVolverAlMenu();
+            this.FormClosing += ReporteQuincenalView_FormClosing;
+
 
             if (btnBuscarReporte != null) this.AcceptButton = btnBuscarReporte;
 

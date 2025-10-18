@@ -629,19 +629,19 @@
                   <Width>2.5cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.99729cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.81209cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.865cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>2.26188cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.70625cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -972,7 +972,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ID_Factura</rd:DefaultName>
@@ -981,6 +983,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1097,7 +1100,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Pagado</rd:DefaultName>
@@ -1106,6 +1111,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1130,7 +1136,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Saldo1</rd:DefaultName>
@@ -1139,6 +1147,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1157,7 +1166,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Switch(Fields!EstadoPago.Value="Pagada","SeaGreen", Fields!EstadoPago.Value="Parcial","Goldenrod", True,"IndianRed")</Value>
+                                  <Value>=Fields!EstadoPago.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1170,6 +1179,11 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <BackgroundColor>=Switch(
+  Fields!EstadoPago.Value="Pagada","SeaGreen",
+  Fields!EstadoPago.Value="Parcial","Goldenrod",
+  True,"IndianRed"
+)</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1187,7 +1201,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIF(IsNothing(Fields!UltimoPago.Value),"",Format(Fields!UltimoPago.Value,"dd/MM/yyyy"))</Value>
+                                  <Value>=IIF(IsNothing(Fields!UltimoPago.Value), "", 
+     Format(Fields!UltimoPago.Value, "dd/MM/yyyy"))</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1269,7 +1284,7 @@
             <Top>6.09354cm</Top>
             <Left>0.32787cm</Left>
             <Height>1.2cm</Height>
-            <Width>21.69333cm</Width>
+            <Width>18.83584cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1317,7 +1332,7 @@
                   <Width>3.00271cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5cm</Width>
+                  <Width>1.99729cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>3.00271cm</Width>
@@ -1516,7 +1531,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Monto</rd:DefaultName>
@@ -1525,6 +1542,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1620,7 +1638,7 @@
             <Top>9.6125cm</Top>
             <Left>0.32787cm</Left>
             <Height>1.2cm</Height>
-            <Width>11.00542cm</Width>
+            <Width>10.50271cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1636,7 +1654,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>8.89893in</Width>
+      <Width>10.26351in</Width>
       <Page>
         <PageHeader>
           <Height>2.68745cm</Height>
@@ -1662,21 +1680,9 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Reporte de Facturación e Importes </Value>
+                      <Value>="Reporte de facturación y pagos " &amp; Parameters!pRango.Value</Value>
                       <Style>
-                        <FontSize>18pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>según pacientes.</Value>
-                      <Style>
-                        <FontSize>18pt</FontSize>
+                        <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1687,9 +1693,43 @@
               <rd:DefaultName>Textbox51</rd:DefaultName>
               <Top>0.25929cm</Top>
               <Left>4.69264cm</Left>
-              <Height>2.32233cm</Height>
-              <Width>17.62535cm</Width>
+              <Height>1.10525cm</Height>
+              <Width>19.74202cm</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox52">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Estado: " &amp; Parameters!pEstado.Value 
+ &amp; " | Paciente: " &amp; Parameters!pPaciente.Value 
+ &amp; " | Emitido: " &amp; Parameters!pFechaEmision.Value</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox51</rd:DefaultName>
+              <Top>1.50565cm</Top>
+              <Left>4.69264cm</Left>
+              <Height>1.11124cm</Height>
+              <Width>19.74202cm</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1727,8 +1767,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox64</rd:DefaultName>
-              <Top>0.17639cm</Top>
-              <Left>7.3993cm</Left>
+              <Top>0.03528cm</Top>
+              <Left>9.5212cm</Left>
               <Height>2.12548cm</Height>
               <Width>7.12191cm</Width>
               <Style>
@@ -1750,10 +1790,10 @@
         </PageFooter>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
-        <LeftMargin>2cm</LeftMargin>
-        <RightMargin>2cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <LeftMargin>0.5cm</LeftMargin>
+        <RightMargin>0.5cm</RightMargin>
+        <TopMargin>0.5cm</TopMargin>
+        <BottomMargin>0.5cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
