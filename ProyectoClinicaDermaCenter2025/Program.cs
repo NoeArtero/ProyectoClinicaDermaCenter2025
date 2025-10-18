@@ -1,4 +1,5 @@
 using ProyectoClinicaDermaCenter2025.ConexionDB;
+using System.Text;
 
 namespace ProyectoClinicaDermaCenter2025
 {
@@ -12,6 +13,10 @@ namespace ProyectoClinicaDermaCenter2025
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // <- necesario para RDLC
+
+
             ApplicationConfiguration.Initialize();
             try { Conexion.Initialize(); }
             catch (Exception ex)
