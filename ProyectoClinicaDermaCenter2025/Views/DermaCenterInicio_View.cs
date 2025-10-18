@@ -191,10 +191,10 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            Empleado_Roles_View formEmpleados = new Empleado_Roles_View();
-            formEmpleados.Show();
+            var frm = new Empleado_Roles_View(this);
             this.Hide();
-             hideSubMenu();
+            frm.Show();
+
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
