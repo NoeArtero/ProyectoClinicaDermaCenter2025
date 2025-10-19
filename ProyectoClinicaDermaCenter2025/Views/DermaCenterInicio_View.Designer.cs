@@ -41,11 +41,9 @@
             btnFinanzas = new Button();
             panelInventario = new Panel();
             btnProveedores = new Button();
-            btnVencimiento = new Button();
             btnInventario = new Button();
             btnInventarioFarmacia = new Button();
             panelAtencionCl = new Panel();
-            btnAseguradoras = new Button();
             btnServicios = new Button();
             btnCitas = new Button();
             btnPacientes = new Button();
@@ -88,7 +86,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 714);
+            button1.Location = new Point(0, 658);
             button1.Name = "button1";
             button1.Size = new Size(331, 45);
             button1.TabIndex = 4;
@@ -102,9 +100,9 @@
             panelAdministraccion.Controls.Add(btnReportes);
             panelAdministraccion.Controls.Add(btnEmpleados);
             panelAdministraccion.Dock = DockStyle.Top;
-            panelAdministraccion.Location = new Point(0, 624);
+            panelAdministraccion.Location = new Point(0, 574);
             panelAdministraccion.Name = "panelAdministraccion";
-            panelAdministraccion.Size = new Size(331, 90);
+            panelAdministraccion.Size = new Size(331, 84);
             panelAdministraccion.TabIndex = 8;
             // 
             // btnReportes
@@ -141,7 +139,7 @@
             btnAdministraccion.FlatAppearance.BorderSize = 0;
             btnAdministraccion.FlatStyle = FlatStyle.Flat;
             btnAdministraccion.ForeColor = SystemColors.ButtonFace;
-            btnAdministraccion.Location = new Point(0, 579);
+            btnAdministraccion.Location = new Point(0, 529);
             btnAdministraccion.Name = "btnAdministraccion";
             btnAdministraccion.Size = new Size(331, 45);
             btnAdministraccion.TabIndex = 10;
@@ -155,9 +153,9 @@
             panelFinanzas.Controls.Add(btnFacturacion);
             panelFinanzas.Controls.Add(btnPagos);
             panelFinanzas.Dock = DockStyle.Top;
-            panelFinanzas.Location = new Point(0, 499);
+            panelFinanzas.Location = new Point(0, 441);
             panelFinanzas.Name = "panelFinanzas";
-            panelFinanzas.Size = new Size(331, 80);
+            panelFinanzas.Size = new Size(331, 88);
             panelFinanzas.TabIndex = 9;
             // 
             // btnFacturacion
@@ -194,7 +192,7 @@
             btnFinanzas.FlatAppearance.BorderSize = 0;
             btnFinanzas.FlatStyle = FlatStyle.Flat;
             btnFinanzas.ForeColor = SystemColors.ButtonFace;
-            btnFinanzas.Location = new Point(0, 454);
+            btnFinanzas.Location = new Point(0, 396);
             btnFinanzas.Name = "btnFinanzas";
             btnFinanzas.Size = new Size(331, 45);
             btnFinanzas.TabIndex = 7;
@@ -206,12 +204,11 @@
             // 
             panelInventario.BackColor = Color.FromArgb(15, 23, 42);
             panelInventario.Controls.Add(btnProveedores);
-            panelInventario.Controls.Add(btnVencimiento);
             panelInventario.Controls.Add(btnInventario);
             panelInventario.Dock = DockStyle.Top;
-            panelInventario.Location = new Point(0, 343);
+            panelInventario.Location = new Point(0, 295);
             panelInventario.Name = "panelInventario";
-            panelInventario.Size = new Size(331, 111);
+            panelInventario.Size = new Size(331, 101);
             panelInventario.TabIndex = 7;
             // 
             // btnProveedores
@@ -220,27 +217,13 @@
             btnProveedores.FlatAppearance.BorderSize = 0;
             btnProveedores.FlatStyle = FlatStyle.Flat;
             btnProveedores.ForeColor = SystemColors.ButtonFace;
-            btnProveedores.Location = new Point(0, 80);
+            btnProveedores.Location = new Point(0, 40);
             btnProveedores.Name = "btnProveedores";
             btnProveedores.Size = new Size(331, 40);
             btnProveedores.TabIndex = 6;
-            btnProveedores.Text = "Proveedores";
+            btnProveedores.Text = "Registro Proveedores/Productos";
             btnProveedores.UseVisualStyleBackColor = true;
             btnProveedores.Click += btnProveedores_Click;
-            // 
-            // btnVencimiento
-            // 
-            btnVencimiento.Dock = DockStyle.Top;
-            btnVencimiento.FlatAppearance.BorderSize = 0;
-            btnVencimiento.FlatStyle = FlatStyle.Flat;
-            btnVencimiento.ForeColor = SystemColors.ButtonFace;
-            btnVencimiento.Location = new Point(0, 40);
-            btnVencimiento.Name = "btnVencimiento";
-            btnVencimiento.Size = new Size(331, 40);
-            btnVencimiento.TabIndex = 5;
-            btnVencimiento.Text = "Vencimientos";
-            btnVencimiento.UseVisualStyleBackColor = true;
-            btnVencimiento.Click += btnVencimiento_Click;
             // 
             // btnInventario
             // 
@@ -262,7 +245,7 @@
             btnInventarioFarmacia.FlatAppearance.BorderSize = 0;
             btnInventarioFarmacia.FlatStyle = FlatStyle.Flat;
             btnInventarioFarmacia.ForeColor = SystemColors.ButtonFace;
-            btnInventarioFarmacia.Location = new Point(0, 298);
+            btnInventarioFarmacia.Location = new Point(0, 250);
             btnInventarioFarmacia.Name = "btnInventarioFarmacia";
             btnInventarioFarmacia.Size = new Size(331, 45);
             btnInventarioFarmacia.TabIndex = 7;
@@ -273,29 +256,14 @@
             // panelAtencionCl
             // 
             panelAtencionCl.BackColor = Color.FromArgb(15, 23, 42);
-            panelAtencionCl.Controls.Add(btnAseguradoras);
             panelAtencionCl.Controls.Add(btnServicios);
             panelAtencionCl.Controls.Add(btnCitas);
             panelAtencionCl.Controls.Add(btnPacientes);
             panelAtencionCl.Dock = DockStyle.Top;
             panelAtencionCl.Location = new Point(0, 128);
             panelAtencionCl.Name = "panelAtencionCl";
-            panelAtencionCl.Size = new Size(331, 170);
+            panelAtencionCl.Size = new Size(331, 122);
             panelAtencionCl.TabIndex = 8;
-            // 
-            // btnAseguradoras
-            // 
-            btnAseguradoras.Dock = DockStyle.Top;
-            btnAseguradoras.FlatAppearance.BorderSize = 0;
-            btnAseguradoras.FlatStyle = FlatStyle.Flat;
-            btnAseguradoras.ForeColor = SystemColors.ButtonFace;
-            btnAseguradoras.Location = new Point(0, 120);
-            btnAseguradoras.Name = "btnAseguradoras";
-            btnAseguradoras.Size = new Size(331, 40);
-            btnAseguradoras.TabIndex = 8;
-            btnAseguradoras.Text = "Aseguradoras / Polizas";
-            btnAseguradoras.UseVisualStyleBackColor = true;
-            btnAseguradoras.Click += btnAseguradoras_Click;
             // 
             // btnServicios
             // 
@@ -402,13 +370,11 @@
         private Button btnCitas;
         private Button btnAtencionCl;
         private Panel panelAtencionCl;
-        private Button btnAseguradoras;
         private Button btnServicios;
         private Button btnPacientes;
         private Button btnProveedores;
         private Panel panelInventario;
         private Button btnInventarioFarmacia;
-        private Button btnVencimiento;
         private Button btnInventario;
         private Button btnFacturacion;
         private Button btnFinanzas;

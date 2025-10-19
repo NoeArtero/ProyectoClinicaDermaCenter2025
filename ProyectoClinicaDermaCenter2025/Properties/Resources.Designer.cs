@@ -69,5 +69,15 @@ namespace ProyectoClinicaDermaCenter2025.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_profile_logo_computer_icons_user_user_blue_heroes_logo_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
