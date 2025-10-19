@@ -86,7 +86,7 @@ ORDER BY p.Apellidos, p.Nombres;";
                 }
                 else
                 {
-                    errorLogin.SetError(txtClave, "Credenciales inválidas (verifique los últimos 4 del DUI).");
+                    errorLogin.SetError(txtClave, "Clave inválida, verifique nuevamente.");
                 }
             }
             catch (Exception ex)

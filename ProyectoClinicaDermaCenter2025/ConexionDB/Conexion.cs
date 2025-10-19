@@ -39,10 +39,10 @@ namespace ProyectoClinicaDermaCenter2025.ConexionDB
             bool creadaAhora = AsegurarBaseCreada(DatabaseName);
             AppConnectionString = BuildDbConnectionString(server, DatabaseName);
 
-            System.Windows.Forms.MessageBox.Show(
-                $"Instancia: {ServerName}\nBD: {DatabaseName}\n" +
-                (creadaAhora ? "Resultado: BD creada" : "Resultado: BD ya existía"),
-                "DermaCenter - Inicialización de BD");
+            //System.Windows.Forms.MessageBox.Show(
+            //    $"Instancia: {ServerName}\nBD: {DatabaseName}\n" +
+            //    (creadaAhora ? "Resultado: BD creada" : "Resultado: BD ya existía"),
+            //    "DermaCenter - Inicialización de BD");
         }
 
 
