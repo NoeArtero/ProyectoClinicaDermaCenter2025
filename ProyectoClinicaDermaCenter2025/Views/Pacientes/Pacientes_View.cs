@@ -270,7 +270,9 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
             // Limpiar Campos de Texto
             txtNombre.Clear();
             txtDUI.Clear();
+            txtEdad.Clear();
             txtCorreo.Clear();
+            txtContactoF.Clear();
             txtTelefono.Clear();
             txtDirrec.Clear();
             txtOtrasAlergias.Clear(); 
