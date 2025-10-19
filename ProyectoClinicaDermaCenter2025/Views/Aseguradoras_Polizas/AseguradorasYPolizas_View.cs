@@ -67,7 +67,6 @@ namespace ProyectoClinicaDermaCenter2025.Views.Aseguradoras_Polizas
                     int idAseguradora = 0;
                     string nombreAseguradora = txtNombreAseguradora.Text.Trim();
 
-                    // 1. Buscar o Crear la Aseguradora
                     string selectQuery = "SELECT ID_Aseguradora FROM ASEGURADORA WHERE Nombre = @Nombre";
                     using (SqlCommand cmdSelect = new SqlCommand(selectQuery, con))
                     {

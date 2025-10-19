@@ -49,7 +49,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                     int nuevoIdPersona = 0;
 
                     string personaQuery = @"
-                INSERT INTO PERSONA (DUI, Nombre, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
+                INSERT INTO PERSONA (DUI, Nombres, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
                 VALUES (@DUI, @Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
                 SELECT SCOPE_IDENTITY();";
 
@@ -67,7 +67,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                     using (SqlCommand cmdPersona = new SqlCommand(personaQuery, con))
                     {
                         cmdPersona.Parameters.AddWithValue("@DUI", txtDUI.Text);
-                        cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
+                        cmdPersona.Parameters.AddWithValue("@Nombres", nombre);
                         cmdPersona.Parameters.AddWithValue("@Apellidos", apellidos);
                         cmdPersona.Parameters.AddWithValue("@FechaNacimiento", dtFechaNac.Value);
                         cmdPersona.Parameters.AddWithValue("@Direccion", txtDirrec.Text);
@@ -181,8 +181,8 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                     con.Open();
 
                     string personaQuery = @"
-                INSERT INTO PERSONA (DUI, Nombre, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
-                VALUES (@DUI, @Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
+                INSERT INTO PERSONA (DUI, Nombres, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
+                VALUES (@DUI, @Nombres, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
                 SELECT SCOPE_IDENTITY();";
 
                     string nombreCompleto = txtNombre.Text.Trim();
@@ -198,7 +198,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                     using (SqlCommand cmdPersona = new SqlCommand(personaQuery, con))
                     {
                         cmdPersona.Parameters.AddWithValue("@DUI", txtDUI.Text);
-                        cmdPersona.Parameters.AddWithValue("@Nombre", nombre);
+                        cmdPersona.Parameters.AddWithValue("@Nombres", nombre);
                         cmdPersona.Parameters.AddWithValue("@Apellidos", apellidos);
                         cmdPersona.Parameters.AddWithValue("@FechaNacimiento", dtFechaNac.Value);
                         cmdPersona.Parameters.AddWithValue("@Direccion", txtDirrec.Text);
