@@ -30,17 +30,22 @@ namespace ProyectoClinicaDermaCenter2025
         {
             switch (Sesion.IdRol)
             {
-                case 1: 
-                    break;
-                case 2: 
+                case 1:
                     btnFinanzas.Visible = panelFinanzas.Visible = false;
                     btnAdministraccion.Visible = panelAdministraccion.Visible = false;
                     break;
-                case 3: 
-                    btnInventarioFarmacia.Visible = panelInventario.Visible = false;
-                    btnAdministraccion.Visible = panelAdministraccion.Visible = false;
+                case 2: 
+                    btnEmpleados.Visible = panelFinanzas.Visible = false;
+                    btnServicios.Visible = panelFinanzas.Visible = false;
                     break;
-                    
+                case 3: 
+                   
+                    break;
+                case 4:
+                    btnEmpleados.Visible = panelFinanzas.Visible = false;
+                    btnServicios.Visible = panelFinanzas.Visible = false;
+                    break;
+
             }
         }
 
@@ -72,7 +77,7 @@ namespace ProyectoClinicaDermaCenter2025
 
         private void DermaCenterInicio_Load(object sender, EventArgs e)
         {
-           // AplicarPermisosPorRol();
+           AplicarPermisosPorRol();
             OcultarSubMenus();
         }
 
@@ -158,7 +163,7 @@ namespace ProyectoClinicaDermaCenter2025
         {
             OcultarSubMenus();
             this.Hide();
-            PagosDeudas_View formPagos = new PagosDeudas_View();
+            Pagos_View formPagos = new Pagos_View();
             formPagos.ShowDialog();
             this.Show();
         }

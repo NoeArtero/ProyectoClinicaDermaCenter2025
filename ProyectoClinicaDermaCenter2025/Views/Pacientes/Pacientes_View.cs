@@ -34,7 +34,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDUI.Text))
             {
-                MessageBox.Show("El nombre completo y el DNI son obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El nombre completo y el DUI son obligatorios.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                                 cmdHistorial.ExecuteNonQuery();
                             }
                         }
-                       
+
                         if (!string.IsNullOrWhiteSpace(txtOtrasAlergias.Text))
                         {
                             using (SqlCommand cmdHistorial = new SqlCommand(historialQuery, con))
@@ -167,7 +167,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtDUI.Text))
             {
-                MessageBox.Show("Para agregar una aseguradora, primero debes llenar el nombre completo y el DNI del paciente.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Para agregar una aseguradora, primero debes llenar el nombre completo y el DUI del paciente.", "Campos Vacíos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -251,10 +251,10 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
             if (cmbAlergias.SelectedItem != null && cmbAlergias.SelectedItem.ToString() == "Otros...")
             {
                 // Si es Otros..., hacemos visible el Label y el TextBox y saldra lo que dice el label xd.
-                lblInstruccionAlergia.Text = "Especifique cuál:";
+                lblInstruccionAlergia.Text = "Especifique \n" + "cuál:";
                 lblInstruccionAlergia.Visible = true;
                 txtOtrasAlergias.Visible = true;
-                txtOtrasAlergias.Focus(); 
+                txtOtrasAlergias.Focus();
             }
             else
             {
@@ -275,12 +275,17 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
             txtContactoF.Clear();
             txtTelefono.Clear();
             txtDirrec.Clear();
-            txtOtrasAlergias.Clear(); 
+            txtOtrasAlergias.Clear();
             cmbPais.SelectedIndex = -1;
             cmbAlergias.SelectedIndex = -1;
             cmbSexo.SelectedIndex = -1;
             dtFechaNac.Value = DateTime.Now;
             txtNombre.Focus();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
