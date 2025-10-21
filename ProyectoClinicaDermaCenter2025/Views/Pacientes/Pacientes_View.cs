@@ -50,7 +50,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
 
                     string personaQuery = @"
                 INSERT INTO PERSONA (DUI, Nombres, Apellidos, FechaNacimiento, Direccion, Sexo, Pais, Estado)
-                VALUES (@DUI, @Nombre, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
+                VALUES (@DUI, @Nombres, @Apellidos, @FechaNacimiento, @Direccion, @Sexo, @Pais, 'Activo');
                 SELECT SCOPE_IDENTITY();";
 
                     // Separar nombre completo a Nombre y apellidos
@@ -67,7 +67,7 @@ namespace ProyectoClinicaDermaCenter2025.Views.Pacientes
                     using (SqlCommand cmdPersona = new SqlCommand(personaQuery, con))
                     {
                         cmdPersona.Parameters.AddWithValue("@DUI", txtDUI.Text);
-                        cmdPersona.Parameters.AddWithValue("@Nombres", nombre);
+                        cmdPersona.Parameters.AddWithValue("@Nombres", nombreCompleto);
                         cmdPersona.Parameters.AddWithValue("@Apellidos", apellidos);
                         cmdPersona.Parameters.AddWithValue("@FechaNacimiento", dtFechaNac.Value);
                         cmdPersona.Parameters.AddWithValue("@Direccion", txtDirrec.Text);

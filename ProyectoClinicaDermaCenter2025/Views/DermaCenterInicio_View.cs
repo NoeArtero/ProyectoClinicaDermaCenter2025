@@ -200,12 +200,40 @@ namespace ProyectoClinicaDermaCenter2025
             this.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CerrarSesion()
         {
-            Application.Exit();
+            var r = MessageBox.Show("¿Cerrar sesión y volver al login?", "Cerrar sesión",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (r != DialogResult.Yes) return;
+
+            Sesion.IdEmpleado = 0;
+            Sesion.IdRol = 0;
+            Sesion.Nombre = null;
+            Sesion.RolNombre = null;
+
+            this.Hide();
+            using (var login = new ProyectoClinicaDermaCenter2025.Views.Login_View())
+            {
+                var result = login.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    AplicarPermisosPorRol();
+                    OcultarSubMenus();
+                    this.Show();
+                }
+                else
+                {
+                    this.Close(); 
+                }
+            }
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CerrarSesion();
+        }
+
+
     }
 
 }
